@@ -1,0 +1,23 @@
+.table{
+    border: 1px solid #eee;
+    table-layout: fixed;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.table tr {
+    font-weight: normal;
+    padding: 3px;
+    background: floralwhite;
+    border: 1px solid #B0C4DE;
+}
+.table td{
+    padding: 3px 10px;
+    border: 1px solid #B0C4DE;
+    text-align: left;
+}
+.table tbody tr:nth-child(odd){
+    background: #B0C4DE;
+}
+.table tbody tr:nth-child(even){
+    background: floralwhite;
+}

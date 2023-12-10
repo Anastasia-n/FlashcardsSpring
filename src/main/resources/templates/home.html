@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/css/table.css"/>
+</head>
+<body style="background-color: #E6E6FA ; margin-left: 90px; margin-top: 45px; font-size: large">
+<h1 th:text="${'Добро пожаловать, ' + user.name + '!'}">VALUE</h1>
+<table class="table">
+    <tr>
+        <td>Имя набора</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr th:each="folder : ${folders}">
+        <td th:text="${folder.nameFolder}"></td>
+        <td><a th:href="@{/vocabulary?folder={id} (id=${folder.id})}">Просмотр</a></td>
+        <td><a th:href="@{/folders/{id}/edit (id=${folder.id})}">Изменить название</a></td>
+        <td><a th:href="@{/folders/{id} (id=${folder.id})}">Удалить</a></td>
+    </tr>
+</table>
+<br/>
+<a th:href="@{/folders/new}">Создать новый набор</a>
+<br/>
+<br/>
+<a th:href="@{/users/edit}">Изменить имя пользователя</a>
+<br/>
+<br/>
+<form action="/logout" method="get">
+    <button type="submit" style="font-size: medium">Выход</button>
+</form>
+</body>
+</html>
