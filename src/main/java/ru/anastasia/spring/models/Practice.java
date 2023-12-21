@@ -29,7 +29,7 @@ public class Practice {
     private int repetitionStage;
 
     @JoinColumn(name = "idfolderfk", nullable = false)
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     private Folder idFolderFK;
 
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "idPracticeFK")

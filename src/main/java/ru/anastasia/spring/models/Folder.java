@@ -17,7 +17,7 @@ public class Folder {
     private String nameFolder;
 
     @JoinColumn(name = "iduserfk", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Users idUserFK;//
 
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "idFolderFK")

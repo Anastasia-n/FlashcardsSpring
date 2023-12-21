@@ -21,7 +21,7 @@ public class Vocabulary {
     private String context;
 
     @JoinColumn(name = "idfolderfk", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Folder idFolderFK;
 
     public Long getId() {

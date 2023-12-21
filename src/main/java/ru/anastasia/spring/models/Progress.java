@@ -18,7 +18,7 @@ public class Progress {
     private int mistakes;
 
     @JoinColumn(name = "idpracticefk", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Practice idPracticeFK;
 
     public Long getId() {

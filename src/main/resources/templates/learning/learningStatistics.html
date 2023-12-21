@@ -15,7 +15,7 @@
 <a th:text = "${'Средний результат: ' + result + ' %'}"></a>
 <br/>
 <br/>
-<form th:method="post" th:action="@{/learning/statistics/delete}" th:object="${folder}">
+<form th:method="delete" th:action="@{/learning/statistics/delete}" th:object="${folder}">
     <input type="hidden" id="idfolder" th:field="*{id}"/>
     <input type="hidden" id="iduserfk" th:field="*{idUserFK}"/>
     <input type="hidden" id="namefolder" th:field="*{nameFolder}"/>

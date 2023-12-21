@@ -20,13 +20,9 @@ public class FolderService {
         this.folderRepository = folderRepository;
     }
 
-    public List<Folder> getAll (){
-        return folderRepository.findAll();
-    }
-
-    public List<Folder> getAllById(Users users){
-        return folderRepository.findAllByIdUserFK(users);
-    }
+//    public List<Folder> getAllById(Users users){
+//        return folderRepository.findAllByIdUserFK(users);
+//    }
 
     public void save (Folder folder){
         folderRepository.saveAndFlush(folder);
@@ -38,6 +34,10 @@ public class FolderService {
 
     public void delete (Long id){
         folderRepository.deleteById(id);
+    }
+
+    public Folder getReferenceById (Long id){
+        return folderRepository.getReferenceById(id);
     }
 
 }

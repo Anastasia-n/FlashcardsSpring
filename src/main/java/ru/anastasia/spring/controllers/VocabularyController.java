@@ -29,7 +29,7 @@ public class VocabularyController {
     public String getWords(@RequestParam("folder") Long id, Model model){
         Folder folder = folderService.getById(id);
         model.addAttribute("showFolder", folder);
-        model.addAttribute("words",vocabularyService.getAll(folder));
+        model.addAttribute("words",folder.getVocabularyList()); //vocabularyService.getAll(folder)
         model.addAttribute("timeLeft", spacedRepetitionService.showTimeLeft(folder));
         return "/vocabulary/showVocabulary";
     }
@@ -37,7 +37,8 @@ public class VocabularyController {
     @PreAuthorize("@folderService.getById(#id).idUserFK.login == authentication.name")
     @GetMapping("/new") //Создание нового слова
     public String addWord(@RequestParam("id") Long id, @ModelAttribute("vocabulary") Vocabulary vocabulary){
-        vocabulary.setIdFolderFK(folderService.getById(id));
+        //vocabulary.setIdFolderFK(folderService.getById(id));
+        vocabulary.setIdFolderFK(folderService.getReferenceById(id));
         return "/vocabulary/addWord";
     }
 

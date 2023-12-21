@@ -1,14 +1,15 @@
 package ru.anastasia.spring.service;
 
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.anastasia.spring.models.Folder;
 import ru.anastasia.spring.models.Vocabulary;
 import ru.anastasia.spring.repository.VocabularyRepository;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -21,9 +22,9 @@ public class VocabularyService {
         this.vocabularyRepository = vocabularyRepository;
     }
 
-    public List<Vocabulary> getAll(Folder folder){
-        return vocabularyRepository.findAllByIdFolderFK(folder);
-    }
+//    public List<Vocabulary> getAll(Folder folder){
+//        return vocabularyRepository.findAllByIdFolderFK(folder);
+//    }
 
     public void save (Vocabulary vocabulary){
         vocabularyRepository.saveAndFlush(vocabulary);
@@ -40,4 +41,5 @@ public class VocabularyService {
     public Page<Vocabulary> getVocabularyForPagination(Folder folder, Pageable pageable) {
         return vocabularyRepository.findAllByIdFolderFK(folder, pageable);
     }
+
 }

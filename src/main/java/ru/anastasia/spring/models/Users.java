@@ -26,7 +26,7 @@ public class Users {
     @Column(name = "role", length = 20)
     private Role role;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE, mappedBy = "idUserFK")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE, mappedBy = "idUserFK")
     private List<Folder> folderList;
 
     public List<Folder> getFolderList() {

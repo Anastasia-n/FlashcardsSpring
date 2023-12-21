@@ -29,7 +29,7 @@ public class FolderController {
         Users currentPerson = usersService.getByLogin(user.getUsername());
         session.setAttribute("userInfo", currentPerson);
         model.addAttribute("user",currentPerson);
-        model.addAttribute("folders", folderService.getAllById(currentPerson));
+        model.addAttribute("folders",currentPerson.getFolderList());
         return "home";
     }
 

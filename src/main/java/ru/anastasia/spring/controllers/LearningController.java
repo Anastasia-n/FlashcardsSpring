@@ -84,13 +84,13 @@ public class LearningController {
         currentPage = 0;
     }
 
-    @GetMapping("/finish/delete")
+    @GetMapping("/finish/delete") //завершить изучение модуля, не сохранять результат
     public String finishAndDelete(@RequestParam("back") Long folderId){
         clearCounters();
         return "redirect:/vocabulary?folder=" + folderId;
     }
 
-    @PostMapping("/finish/save")
+    @PostMapping("/finish/save") //завершить изучение модуля, сохранить результат
     public String finishAndSave(@RequestParam("back") Long folderId){
         Folder folder = folderService.getById(folderId);
         Practice practice = new Practice();
@@ -117,13 +117,13 @@ public class LearningController {
         return "redirect:/vocabulary?folder=" + folderId;
     }
 
-    @GetMapping("/reset")
+    @GetMapping("/reset") // начать изучение заново (сброс интервального повторения)
     public String counterReset(@RequestParam("folder")Long id, Model model){
         model.addAttribute("folder",folderService.getById(id));
         return "/learning/learningReset";
     }
 
-    @DeleteMapping("/reset") // начать изучение заново (сброс отсчета)
+    @DeleteMapping("/reset") // начать изучение заново (сброс интервального повторения)
     public String counterResetting (@ModelAttribute("folder") Folder folder) {
         if(practiceService.checkIfExists(folder)) {
             Practice practice = practiceService.getPractice(folder);
@@ -138,8 +138,8 @@ public class LearningController {
         int number = 0;
         String lastLearning = "нет данных";
         double result = 0;
-        if(practiceService.checkIfExists(folder)) {
-            Practice practice = practiceService.getPractice(folder);
+        if(folder.getPractice() != null) { //practiceService.checkIfExists(folder)
+            Practice practice = folder.getPractice(); //practiceService.getPractice(folder)
             if (practice.getLastPracticeDate() != null) {
                 number = practice.getNumberOfPractices();
                 Duration duration = Duration.between(practice.getLastPracticeDate().toInstant(), Calendar.getInstance().toInstant());
@@ -155,7 +155,7 @@ public class LearningController {
         return "/learning/learningStatistics";
     }
 
-    @PostMapping("/statistics/delete") //сброс статистики
+    @DeleteMapping("/statistics/delete") //сброс статистики
     public String deleteStatistics (@ModelAttribute("folder") Folder folder) {
         if(practiceService.checkIfExists(folder)) {
             Practice practice = practiceService.getPractice(folder);
