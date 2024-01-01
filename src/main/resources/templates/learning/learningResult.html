@@ -13,6 +13,7 @@
 <p>Сохранить статистику?</p>
 <form action="/learning/finish/save" method="POST" style="display: inline-block;">
     <input type="hidden" th:value="${back}" th:attr="name='back'">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <button type="submit" style="font-size: medium; width: 50px"> Да </button>
 </form>
 <form action="/learning/finish/delete" method="GET" style="display: inline-block;">

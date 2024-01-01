@@ -35,7 +35,7 @@ public class FolderController {
 
     @GetMapping("/new") //создание набора слов
     public String addFolder(@ModelAttribute("folder") Folder folder){
-        return "/folder/addFolder";
+        return "folder/addFolder";
     }
 
     @PostMapping //создание набора слов
@@ -49,7 +49,7 @@ public class FolderController {
     @GetMapping("/{id}/edit") //редактирование набора слов
     public String editFolderForm(@PathVariable Long id, Model model) {
         model.addAttribute("folder",folderService.getById(id));
-        return "/folder/editFolder";
+        return "folder/editFolder";
     }
 
     @PatchMapping("/{id}") //редактирование набора слов
@@ -62,7 +62,7 @@ public class FolderController {
     @GetMapping("/{id}") //удаление набора слов
     public String deleteFolderWarning(@PathVariable Long id, Model model) {
         model.addAttribute("folder", folderService.getById(id));
-        return "/folder/deleteFolder";
+        return "folder/deleteFolder";
     }
 
     @DeleteMapping("/{id}") //удаление набора слов

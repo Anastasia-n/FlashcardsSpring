@@ -19,6 +19,7 @@
     <p>
         <label for="password">Пароль</label>
         <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     </p>
     <button type="submit" style="font-size: medium">Войти</button>
     <br/>

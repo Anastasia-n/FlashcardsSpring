@@ -45,7 +45,7 @@ public class LearningController {
         model.addAttribute("back",folder.getId());
         model.addAttribute("counter",correctAnswers);
         model.addAttribute("currentPage",currentPage);
-        return "/learning/learningPage";
+        return "learning/learningPage";
     }
 
     @GetMapping("/check")
@@ -75,7 +75,7 @@ public class LearningController {
         model.addAttribute("mistakes", mistakes);
         model.addAttribute("numberOfPages", numberOfPages);
         model.addAttribute("back", folderId);
-        return "/learning/learningResult";
+        return "learning/learningResult";
     }
 
     private void clearCounters() {
@@ -92,7 +92,7 @@ public class LearningController {
 
     @PostMapping("/finish/save") //завершить изучение модуля, сохранить результат
     public String finishAndSave(@RequestParam("back") Long folderId){
-        Folder folder = folderService.getById(folderId);
+        Folder folder = folderService.getReferenceById(folderId); //Folder folder = folderService.getById(folderId);
         Practice practice = new Practice();
         if(practiceService.checkIfExists(folder)){
             practice = practiceService.getPractice(folder);
@@ -120,15 +120,12 @@ public class LearningController {
     @GetMapping("/reset") // начать изучение заново (сброс интервального повторения)
     public String counterReset(@RequestParam("folder")Long id, Model model){
         model.addAttribute("folder",folderService.getById(id));
-        return "/learning/learningReset";
+        return "learning/learningReset";
     }
 
     @DeleteMapping("/reset") // начать изучение заново (сброс интервального повторения)
     public String counterResetting (@ModelAttribute("folder") Folder folder) {
-        if(practiceService.checkIfExists(folder)) {
-            Practice practice = practiceService.getPractice(folder);
-            practiceService.delete(practice);
-        }
+        practiceService.reset(folder);
         return "redirect:/vocabulary?folder=" + folder.getId();
     }
 
@@ -152,17 +149,12 @@ public class LearningController {
         model.addAttribute("lastLearning", lastLearning);
         model.addAttribute("result", result);
         model.addAttribute("folder", folder);
-        return "/learning/learningStatistics";
+        return "learning/learningStatistics";
     }
 
     @DeleteMapping("/statistics/delete") //сброс статистики
     public String deleteStatistics (@ModelAttribute("folder") Folder folder) {
-        if(practiceService.checkIfExists(folder)) {
-            Practice practice = practiceService.getPractice(folder);
-            practice.setNumberOfPractices(0);
-            practice.setLastPracticeDate(null);
-            progressService.deleteResults(practice);
-        }
+        progressService.deleteResults(folder);
         return "redirect:/vocabulary?folder=" + folder.getId();
     }
 

@@ -31,7 +31,7 @@ public class VocabularyController {
         model.addAttribute("showFolder", folder);
         model.addAttribute("words",folder.getVocabularyList()); //vocabularyService.getAll(folder)
         model.addAttribute("timeLeft", spacedRepetitionService.showTimeLeft(folder));
-        return "/vocabulary/showVocabulary";
+        return "vocabulary/showVocabulary";
     }
 
     @PreAuthorize("@folderService.getById(#id).idUserFK.login == authentication.name")
@@ -39,7 +39,7 @@ public class VocabularyController {
     public String addWord(@RequestParam("id") Long id, @ModelAttribute("vocabulary") Vocabulary vocabulary){
         //vocabulary.setIdFolderFK(folderService.getById(id));
         vocabulary.setIdFolderFK(folderService.getReferenceById(id));
-        return "/vocabulary/addWord";
+        return "vocabulary/addWord";
     }
 
     @PostMapping() //Создание нового слова
@@ -52,7 +52,7 @@ public class VocabularyController {
     @GetMapping("{id}/edit") //Редактирование слова
     public String editWordForm(@PathVariable Long id, Model model){
         model.addAttribute("wordToEdit", vocabularyService.getById(id));
-        return "/vocabulary/editWord";
+        return "vocabulary/editWord";
     }
 
     @PatchMapping("/{id}") //Редактирование слова
@@ -65,7 +65,7 @@ public class VocabularyController {
     @GetMapping("/{id}") //Удаление слова
     public String deleteWordWarning(@PathVariable Long id, Model model) {
         model.addAttribute("wordToDelete", vocabularyService.getById(id));
-        return "/vocabulary/deleteWord";
+        return "vocabulary/deleteWord";
     }
 
     @DeleteMapping("/{id}") //Удаление слова

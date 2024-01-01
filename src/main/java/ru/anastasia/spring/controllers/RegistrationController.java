@@ -23,17 +23,17 @@ public class RegistrationController {
 
     @GetMapping()
     public String addUserForm(@ModelAttribute("userForm") Users users){
-        return "/security/registration";
+        return "security/registration";
     }
 
     @PostMapping()
     public String addUser(@ModelAttribute("userForm") Users users, Model model) {
         if(usersService.addNewUser(users)){
             model.addAttribute("registrationSuccess", "Пользователь успешно зарегистрирован");
-            return "/security/login";
+            return "security/login";
         } else {
             model.addAttribute("registrationError", "Пользователь с таким логином уже существует");
-            return "/security/registration";
+            return "security/registration";
         }
     }
 

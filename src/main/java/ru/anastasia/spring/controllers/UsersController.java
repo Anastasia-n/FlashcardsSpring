@@ -22,14 +22,14 @@ public class UsersController {
     public String editNameForm (HttpSession session, Model model){
         Users users = (Users)session.getAttribute("userInfo");
         model.addAttribute("user",users);
-        return "/users/editUser";
+        return "users/editUser";
     }
 
     @PatchMapping("/edit") //изменение имени пользователя
     public String editName(@ModelAttribute("user") Users user, HttpSession session){
         session.setAttribute("userInfo", user);
         usersService.setNewName(user);
-        return "redirect:/folders/folder";
+        return "redirect:/folders";
     }
 
 }

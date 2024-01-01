@@ -6,6 +6,8 @@ import ru.anastasia.spring.models.Folder;
 import ru.anastasia.spring.models.Practice;
 import ru.anastasia.spring.repository.PracticeRepository;
 
+import java.util.Calendar;
+
 @Service
 @Transactional
 public class PracticeService {
@@ -15,6 +17,12 @@ public class PracticeService {
 
     public PracticeService(PracticeRepository practiceRepository) {
         this.practiceRepository = practiceRepository;
+    }
+
+    public void reset(Folder folder){
+        if(checkIfExists(folder)) {
+            delete(getPractice(folder));
+        }
     }
 
     public Boolean checkIfExists(Folder folder){
