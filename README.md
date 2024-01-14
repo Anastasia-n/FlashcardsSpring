@@ -10,38 +10,49 @@
 - Hibernate
 - Spring Security
 # Описание
-Web-приложение позволяет изучать иностранные языки, а именно пополнять пассивный словарный запас при помощи флеш-карточек.  
+Web-приложение позволяет изучать иностранные языки при помощи метода флэш-карточек. Данный метод помогает пополнять пассивный словарный запас. 
 
 Вход и регистрация:  
 
+<img src="https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/f0f12471-9d53-4fc7-a4d6-95a9aef92319" width=30% height=30%>
+<img src="https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/f4d61ca4-6d11-446f-8789-0a3f75030823" width=30% height=30%>
 
-![изображение](https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/ea236ae6-8cab-4c63-9d71-608ce5149baf)
-![изображение](https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/de462211-f1fb-4980-81ad-ea4686e25329)
 
+На главной странице отображается список модулей – наборов слов и выражений. У пользователя есть возможность просматривать, редактировать, удалять, изучать и добавлять наборы слов: 
 
-На главной странице отображается список модулей – наборов слов и выражений. У пользователя есть возможность просматривать, редактировать, удалять, изучать и добавлять наборы слов:  
+<img src="https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/d5cd93e5-3dcc-4a96-9e03-d6a3f6f2908d" width=95% height=95%>
 
-![изображение](https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/96917a7f-c6ae-4cb3-a92c-9eab6bab47c4)
+Просмотр модуля (набора слов): 
 
-Здесь пользователь может редактировать, удалять и добавлять слова модуля:  
+<img src="https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/cf95e903-c481-4282-9547-b681b1a78655" width=95% height=95%>
 
-![изображение](https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/c910367c-1d4d-4e5e-aec5-fe7a5b3a0237)
+Здесь пользователь может добавлять и редактировать слова модуля: 
 
-При изучении модуля на странице поочередно отображаются слова соотвествующего набора: 
+<img src="https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/ffec11ea-71cc-4596-ba57-d9c9a1b82fe5" width=48% height=48%>
+<img src="https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/bfbde4fe-5e08-4a8c-be9f-0ff553ea9cca" width=48% height=48%>
 
-![изображение](https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/51ddcf61-0127-4153-9e50-b66001c61614)
-![изображение](https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/58c7ba4d-503b-43de-a6ae-a70c0e8f4759)
+При изучении модуля на странице поочередно отображаются слова соответствующего набора: 
+
+<img src="https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/2ff51cf4-f2e0-44e9-8385-1ad2eba396f4" width=30% height=30%>
+<img src="https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/7d33266e-5c87-4aa4-bd08-9b4395047726" width=30% height=30%>
+
+В конце изучения пользователь видит количество правильных ответов. Сохранение результата повлияет на статистику модуля.
+
+<img src="https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/9c35c7b2-3238-4e3e-b5c2-504f3455f54e" width=30% height=30%>
+<img src="https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/9897d285-fbd0-46c0-926e-39305542bc94" width=30% height=30%>
 
 По завершении изучения приложение переносит пользователя на страницу модулей:  
 
-![изображение](https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/e5d5da2e-bf6e-470a-9849-080346b75703)
+<img src="https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/37a9154e-2f48-48cb-89ad-68e8e7d13bc9" width=95% height=95%>
 
 В приложении реализована функция интервального повторения, которая поможет перенести изученный материал из кратковременной памяти в долговременную.
 Если оставшееся время до изучения истекло, пользователь перейдет на следующую ступень метода интервального повторения и снова увидит отсчет времени. 
 Всего в приложении 9 ступеней. Модуль необходимо повторять через следующие промежутки времени: 2 минуты, 10 минут, 1 час, 5 часов, день, 5 дней, 25 дней, 4 месяца, 2 года.
-Повторение модуля до истечения времени никак не повлияет на обратный отсчет. У модуля animals уже было пройдено 5 ступеней метода интервального повторения.
+Повторение модуля до истечения времени никак не повлияет на обратный отсчет.
 
-![изображение](https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/7f3630d3-fc72-4f56-acfc-45c4d1a29568)
+У модуля animals уже было пройдено 3 ступени метода интервального повторения. 
 
-Просмотр статистики модуля отображает количество проведенных занятий, дату последнего занятия, а также средний результат, 
+<img src="https://github.com/Anastasia-n/FlashcardsSpring/assets/52749662/1ae891f9-8a22-4321-b74b-19a1ea573add" width=35% height=35%>
+
+Статистика модуля отображает количество проведенных занятий, дату последнего занятия, а также средний результат, 
 который рассчитывается как соотношение правильных ответов к общему количеству вопросов.
