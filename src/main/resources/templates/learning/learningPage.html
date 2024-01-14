@@ -37,11 +37,15 @@
 <p th:text="${'Количество правильных ответов: ' + counter}">VALUE</p>
 <div class="pagination-div">
     <span th:if="${page.hasPrevious()}">
-        <a th:href="@{/learning/{id}(id=${back},page=${page.number-1},size=${page.size})}">Назад</a>
+        <a th:href="@{/learning/{id}(id=${back},page=${page.number-1},size=${page.size})}">
+            <img th:src="@{/images/backward.png}" width="20" height="20"/>
+        </a>
     </span>
-    &nbsp;
+    &nbsp
     <span th:if="${page.hasNext()} and ${currentPage > page.number}">
-        <a th:href="@{/learning/{id}(id=${back},page=${page.number+1},size=${page.size})}">Далее</a>
+        <a th:href="@{/learning/{id}(id=${back},page=${page.number+1},size=${page.size})}">
+            <img th:src="@{/images/fast-forward.png}" width="20" height="20"/>
+        </a>
     </span>
 </div>
 <br/>
@@ -53,6 +57,9 @@
 </form>
 </span>
 <br/>
-<a th:href="@{/learning/interrupt?id={id} (id=${back})}">Вернуться к модулю</a>
+<form th:action="@{/learning/interrupt}" method="GET">
+    <input type="hidden" name="id" th:value="${back}" />
+    <button type="submit" style="font-size: medium">Вернуться к модулю</button>
+</form>
 </body>
 </html>

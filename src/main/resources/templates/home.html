@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Главная страница</title>
     <link rel="stylesheet" type="text/css" media="all"
           href="/css/table.css"/>
 </head>
@@ -10,7 +10,7 @@
 <h1 th:text="${'Добро пожаловать, ' + user.name + '!'}">VALUE</h1>
 <table class="table">
     <tr>
-        <td>Имя набора</td>
+        <td>Имя набора слов</td>
         <td></td>
         <td></td>
         <td></td>
@@ -23,11 +23,13 @@
     </tr>
 </table>
 <br/>
-<a th:href="@{/folders/new}">Создать новый набор</a>
+<form action="/folders/new" method="GET">
+    <button type="submit" style="font-size: medium">Создать новый набор слов</button>
+</form>
 <br/>
-<br/>
-<a th:href="@{/users/edit}">Изменить имя пользователя</a>
-<br/>
+<form action="/users/edit" method="GET">
+    <button type="submit" style="font-size: medium">Редактировать пользователя</button>
+</form>
 <br/>
 <form action="/logout" method="get">
     <button type="submit" style="font-size: medium">Выход</button>

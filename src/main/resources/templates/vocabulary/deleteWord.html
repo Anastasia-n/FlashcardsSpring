@@ -5,7 +5,7 @@
     <title>Удаление слова</title>
 </head>
 <body style="background-color: #E6E6FA ; margin-left: 90px; margin-top: 45px; font-size: large">
-<h1 th:text="${'Вы уверены, что хотите удалить слово?'}">VALUE</h1>
+<h1 th:text="${'Вы уверены, что хотите удалить слово ' + wordToDelete.word + '?'}">VALUE</h1>
 <br/>
 <form th:method="DELETE" th:action="@{/vocabulary/{id} (id=${wordToDelete.id})}">
     <input type="submit" value="Удалить" style="font-size: medium"/>

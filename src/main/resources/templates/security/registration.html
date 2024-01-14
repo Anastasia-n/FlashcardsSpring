@@ -11,15 +11,15 @@
         <a style="color:red" th:text = "${registrationError}"></a>
         <br/>
         <br/>
-        <label for="username">Имя пользователя</label>
+        <label for="username">Имя пользователя:</label>
         <input type="text" id="username" th:field="*{name}" class="form-control" placeholder="Username" required maxlength="45">
     </p>
     <p>
-        <label for="login">Логин</label>
+        <label for="login">Логин:</label>
         <input type="text" id="login" th:field="*{login}" class="form-control" placeholder="Login" required maxlength="45" minlength="5">
     </p>
     <p>
-        <label for="password">Пароль</label>
+        <label for="password">Пароль:</label>
         <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="Password" required maxlength="45" minlength="8">
     </p>
     <button type="submit" style="font-size: medium">Зарегистрироваться</button>

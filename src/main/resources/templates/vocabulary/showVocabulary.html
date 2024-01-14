@@ -3,42 +3,52 @@
 <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
     <title>Главная страница</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/css/table.css"/>
 </head>
 <body style="background-color: #E6E6FA ; margin-left: 90px; margin-top: 45px; font-size: large">
 <h1 th:text="${'Просмотр модуля ' + showFolder.nameFolder}">VALUE</h1>
 <a th:text = "${'Оставшееся время до повторения: ' + timeLeft}" style="font-style: italic"></a>
 <br/>
 <br/>
-<table style="border: 3px solid #dddddd; margin-bottom: 20px; border-radius: 7px;">
-    <tr style="font-weight: normal; background: #B0C4DE; border: 2px solid;">
-        <td style="padding-left: 10px; padding-right: 10px">Слово</td>
-        <td style="padding-left: 10px; padding-right: 10px">Перевод</td>
-        <td style="padding-left: 10px; padding-right: 10px">Пример употребления</td>
+<table class="table">
+    <tr>
+        <td>Слово</td>
+        <td>Перевод</td>
+        <td>Пример употребления</td>
         <td></td>
         <td></td>
     </tr>
     <tr th:each="word : ${words}">
-        <td style="border: 2px solid #B0C4DE ; padding: 3px;" th:text="${word.word}"></td>
-        <td style="border: 2px solid #B0C4DE; padding: 3px;" th:text="${word.translation}"></td>
-        <td style="border: 2px solid #B0C4DE; padding: 3px;" th:text="${word.context}"></td>
-        <td style="border: 2px solid #B0C4DE; padding: 3px;"><a th:href="@{/vocabulary/{id}/edit (id=${word.id})}">Редактировать</a></td>
-        <td style="border: 2px solid #B0C4DE; padding: 3px;"><a th:href="@{/vocabulary/{id} (id=${word.id})}">Удалить</a></td>
+        <td th:text="${word.word}"></td>
+        <td  th:text="${word.translation}"></td>
+        <td  th:text="${word.context}"></td>
+        <td><a th:href="@{/vocabulary/{id}/edit (id=${word.id})}">Редактировать</a></td>
+        <td><a th:href="@{/vocabulary/{id} (id=${word.id})}">Удалить</a></td>
     </tr>
 </table>
 <br/>
-<a th:href="@{/learning/reset?folder={id} (id=${showFolder.id})}">Сброс интервального повторения</a>
+<form th:action="@{/learning/reset}" method="GET">
+    <input type="hidden" name="folder" th:value="${showFolder.id}" />
+    <button type="submit" style="font-size: medium">Сброс интервального повторения</button>
+</form>
 <br/>
-<br/>
-<a th:href="@{/vocabulary/new?id={id} (id=${showFolder.id})}">Создать новое слово</a>
-<br/>
+<form th:action="@{/vocabulary/new}" method="GET">
+    <input type="hidden" name="id" th:value="${showFolder.id}" />
+    <button type="submit" style="font-size: medium">Создать новое слово</button>
+</form>
 <br/>
 <span th:unless="${words.isEmpty}">
-        <a th:href="@{/learning/{id} (id=${showFolder.id})}">Изучать модуль</a>
-    </span>
+    <form th:action="@{/learning/{id} (id=${showFolder.id})}" method="GET">
+        <input type="hidden" name="id" th:value="${showFolder.id}" />
+        <button type="submit" style="font-size: medium">Изучать модуль</button>
+    </form>
+</span>
 <br/>
-<br/>
-<a th:href="@{/learning/statistics?folder={id} (id=${showFolder.id})}">Просмотр статистики модуля</a>
-<br/>
+<form th:action="@{/learning/statistics}" method="GET">
+    <input type="hidden" name="folder" th:value="${showFolder.id}" />
+    <button type="submit" style="font-size: medium">Просмотр статистики модуля</button>
+</form>
 <br/>
 <form action="/folders" method="get">
     <button type="submit" style="font-size: medium">Вернуться в главное меню</button>

@@ -2,18 +2,31 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Изменить имя пользователя</title>
+    <title>Редактировать пользователя</title>
 </head>
 <body style="background-color: #E6E6FA ; margin-left: 90px; margin-top: 45px; font-size: large">
-<h1>Изменить имя пользователя</h1>
+<h1>Редактировать пользователя</h1>
 <br/>
 <form th:method="PATCH" th:action="@{/users/edit}" th:object="${user}">
     <input type="hidden" id="iduser" th:field="*{id}"/>
-    <input type="hidden" id="login" th:field="*{login}"/>
-    <input type="hidden" id="password" th:field="*{password}"/>
     <input type="hidden" id="role" th:field="*{role}"/>
-    <label for="username">Новое имя: </label>
-    <input type="text" th:field="*{name}" id="username" maxlength="255" required/>
+    <a style="color:red" th:text = "${error}"></a>
+    <p>
+        <label for="username">Новое имя: </label>
+        <input type="text" th:field="*{name}" id="username" maxlength="255" required/>
+    </p>
+    <p>
+        <label for="login">Новый логин: </label>
+        <input type="text" th:field="*{login}" id="login" maxlength="45" minlength="5" required/>
+    </p>
+    <p>
+        <label for="password">Новый пароль: </label>
+        <input type="password" th:field="*{password}" id="password" value="" maxlength="45" minlength="8" required/>
+    </p>
+    <p>
+        <label for="password2">Повторите пароль: </label>
+        <input type="password" id="password2" name="newPassword" placeholder="Password" maxlength="45" minlength="8" required/>
+    </p>
     <br/>
     <br/>
     <input type="submit" value="Сохранить" style="font-size: medium"/>

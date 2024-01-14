@@ -12,11 +12,13 @@ import ru.anastasia.spring.models.Users;
 import ru.anastasia.spring.service.FolderService;
 import ru.anastasia.spring.service.UsersService;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/folders")
 public class FolderController {
-    final UsersService usersService;
-    final FolderService folderService;
+    private final UsersService usersService;
+    private final FolderService folderService;
 
     public FolderController(UsersService usersService, FolderService folderService) {
         this.folderService = folderService;

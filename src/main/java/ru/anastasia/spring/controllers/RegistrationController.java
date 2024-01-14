@@ -14,8 +14,7 @@ import ru.anastasia.spring.service.UsersService;
 @RequestMapping("/registration")
 public class RegistrationController {
 
-    final
-    UsersService usersService;
+    private final UsersService usersService;
 
     public RegistrationController(UsersService usersService) {
         this.usersService = usersService;
@@ -28,7 +27,7 @@ public class RegistrationController {
 
     @PostMapping()
     public String addUser(@ModelAttribute("userForm") Users users, Model model) {
-        if(usersService.addNewUser(users)){
+        if(usersService.saveUser(users)){
             model.addAttribute("registrationSuccess", "Пользователь успешно зарегистрирован");
             return "security/login";
         } else {

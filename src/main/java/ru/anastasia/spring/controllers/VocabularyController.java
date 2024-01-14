@@ -14,9 +14,9 @@ import ru.anastasia.spring.service.VocabularyService;
 @RequestMapping("/vocabulary")
 public class VocabularyController {
 
-    final VocabularyService vocabularyService;
-    final FolderService folderService;
-    final SpacedRepetitionService spacedRepetitionService;
+    private final VocabularyService vocabularyService;
+    private final FolderService folderService;
+    private final SpacedRepetitionService spacedRepetitionService;
 
     public VocabularyController(VocabularyService vocabularyService, FolderService folderService, SpacedRepetitionService spacedRepetitionService) {
         this.vocabularyService = vocabularyService;

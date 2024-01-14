@@ -11,25 +11,35 @@ import ru.anastasia.spring.service.UsersService;
 @RequestMapping("/users")
 public class UsersController {
 
-    final
-    UsersService usersService;
+    private final UsersService usersService;
 
     public UsersController(UsersService usersService) {
         this.usersService = usersService;
     }
 
-    @GetMapping("/edit") //изменение имени пользователя
+    @GetMapping("/edit") //редактирование пользователя
     public String editNameForm (HttpSession session, Model model){
         Users users = (Users)session.getAttribute("userInfo");
         model.addAttribute("user",users);
         return "users/editUser";
     }
 
-    @PatchMapping("/edit") //изменение имени пользователя
-    public String editName(@ModelAttribute("user") Users user, HttpSession session){
-        session.setAttribute("userInfo", user);
-        usersService.setNewName(user);
-        return "redirect:/folders";
+    @PatchMapping("/edit") //редактирование пользователя
+    public String editName(@ModelAttribute("user") Users user,
+                           @RequestParam("newPassword") String newPassword,
+                           HttpSession session,
+                           Model model){
+        if(newPassword.equals(user.getPassword())){
+            if(usersService.updateUser(user, session)){
+                session.setAttribute("userInfo", user);
+                return "redirect:/folders";
+            } else {
+                model.addAttribute("error", "Пользователь с таким логином уже существует");
+            }
+        } else {
+            model.addAttribute("error", "Пароли не совпадают");
+        }
+        return "users/editUser";
     }
 
 }

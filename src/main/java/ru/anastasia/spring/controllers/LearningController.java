@@ -19,11 +19,11 @@ import java.util.Calendar;
 @RequestMapping("/learning")
 public class LearningController {
 
-    final VocabularyService vocabularyService;
-    final FolderService folderService;
-    final SpacedRepetitionService spacedRepetitionService;
-    final PracticeService practiceService;
-    final ProgressService progressService;
+    private final VocabularyService vocabularyService;
+    private final FolderService folderService;
+    private final SpacedRepetitionService spacedRepetitionService;
+    private final PracticeService practiceService;
+    private final ProgressService progressService;
 
     private int correctAnswers = 0;
     private int mistakes = 0;
@@ -157,5 +157,4 @@ public class LearningController {
         progressService.deleteResults(folder);
         return "redirect:/vocabulary?folder=" + folder.getId();
     }
-
 }

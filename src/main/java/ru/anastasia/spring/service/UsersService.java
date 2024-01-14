@@ -1,5 +1,6 @@
 package ru.anastasia.spring.service;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,11 +20,17 @@ public class UsersService {
         return usersRepository.findByLogin(login).get();
     }
 
-    public void setNewName (Users user) {
-        usersRepository.saveAndFlush(user);
+    public boolean updateUser (Users user, HttpSession session) {
+        if(user.getLogin().equals(((Users) session.getAttribute("userInfo")).getLogin()) || usersRepository.findById(user.getId()).isEmpty()){
+            user.setPassword(new BCryptPasswordEncoder(12).encode(user.getPassword()));
+            usersRepository.saveAndFlush(user);
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public boolean addNewUser(Users users){
+    public boolean saveUser(Users users){
         if(usersRepository.findByLogin(users.getLogin()).isPresent()){
             return false;
         }
